@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本語 アプリ | Japanese Clock</title>
+<!-- ファビコンの設定（ここを追加・変更！） -->
+  <link rel="icon" type="image/png" href="assets/icon/faviconBig.PNG">
+
+
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent-gold: #eab308;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", meiryo, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .app-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 26px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    .badge-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .app-store-btn img {
+      height: 50px;
+      transition: transform 0.2s ease;
+    }
+
+    .app-store-btn:hover img {
+      transform: scale(1.05);
+    }
+
+    .container {
+      display: block;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 50px 0 30px;
+      position: relative;
+      color: var(--accent-gold);
+    }
+
+    /* ビデオ・デモセクション */
+    .video-container {
+      max-width: 360px;
+      margin: 0 auto 50px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      border: 1px solid var(--border-color);
+      background: #000;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* スクリーンショットギャラリー */
+    .gallery { /* カードを並べる全体枠*/
+      display: grid;/* グリッドにカードを並べるモードにする指示*/
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));/* カードの最小幅を260pxにして、画面幅に応じて自動で列数を調整する */
+      gap: 24px;/* カード間の余白を24pxに設定 */
+      justify-items: center;/* カードを中央揃えにする */
+    }
+
+    .screenshot-card {/* 個々のカードのスタイル */
+      background: var(--card-bg);/* カードの背景色を設定 */
+      border-radius: 16px;/* カードの角を丸くする */
+      padding: 12px;/* カード内の余白を設定 */
+      border: 1px solid var(--border-color);/* カードの境界線を設定 */
+      transition: transform 0.2s ease;/* カードの変形アニメーションを設定 */
+      width: 100%;/* カードの幅を100%に設定 */
+      max-width: 300px;/* カードの最大幅を300pxに設定 */
+    }
+
+    .screenshot-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .screenshot-card img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .screenshot-card p {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    /* フィードバック＆ポリシーリンク */
+    .footer-links {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-gold);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+/* ↓ ここから下を追加！ */
+    .screenshot-card p {
+      line-height: 1.5;
+    }
+
+    .en-text {
+      font-size: 0.85em;
+      color: #a0aec0;
+      display: inline-block;
+      margin-top: 2px;
+    }
+.screenshot-card img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  cursor: pointer; /* ← これを追加するとマウスを乗せた時に指マークになるよ！ */
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+   <!-- アプリアイコン -->
+<img src="assets/icon/app_icon.png" alt="App Icon" class="app-icon">
+<h1>Japanese Clock<br>日本語の時計（にほんごのとけい）</h1>
+<p class="subtitle">日本語の数字を覚えよう（にほんごのすうじをおぼえよう）</p>
+    <!-- App Storeバッジ（URLをご自身のリンクに書き換えてね） -->
+    <div class="badge-container">
+      <a href="https://apps.apple.com/" target="_blank" rel="noopener noreferrer" class="app-store-btn">
+        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 動作デモ動画 -->
+    <h2 class="section-title">アプリの動作 / App Demo</h2>
+    <div class="video-container">
+      <video controls autoplay loop muted playsinline poster="assets/screenshots/screenshot1.png">
+        <source src="assets/demo.mp4" type="video/mp4">
+        お使いのブラウザは動画再生に対応していません。
+      </video>
+    </div>
+
+    <!-- スクリーンショットギャラリー -->
+  <h2 class="section-title">スクリーンショット / Screenshots</h2>
+<div class="gallery">
+  <div class="screenshot-card">
+
+    <a href="assets/screenshots/screenshot1.png" target="_blank">
+    <img src="assets/screenshots/screenshot1.png" alt="メイン時計画面">
+    </a>
+    <p>
+      縦書きと漢数字で味わう時間<br>
+      <span class="en-text">Vertical Kanji Clock Display</span>
+    </p>
+  </div>
+  <div class="screenshot-card">
+    <a href="assets/screenshots/screenshot2.png" target="_blank">
+      <img src="assets/screenshots/screenshot2.png" alt="単語帳・学習画面">
+    </a>
+    <p>
+      ふりがな・ローマ字表示対応<br>
+      <span class="en-text">With Furigana & Romaji Readings</span>
+    </p>
+  </div>
+  <div class="screenshot-card">
+    <a href="assets/screenshots/screenshot3.png" target="_blank">
+      <img src="assets/screenshots/screenshot3.png" alt="設定画面">
+    </a>
+    <p>
+      数字や日時の単語帳リスト<br>
+      <span class="en-text">Japanese Numbers Reference List</span>
+    </p>
+  </div>
+</div>
+    </div>
+
+    <!-- お問い合わせ＆プライバシーポリシー -->
+    <div class="footer-links">
+      <!-- Googleフォームやメールリンク（mailto:）などを設定 -->
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScDCYBySjYziI5sIkxhwFC2JiFh8ywK7Irlc7M4MTXrpzLR9w/viewform?usp=header" target="_blank" rel="noopener">Feedback / お問い合わせ</a>
+      <a href="privacy.html">Privacy Policy (プライバシーポリシー)</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Japanese Clock. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
